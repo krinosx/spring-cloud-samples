@@ -1,0 +1,26 @@
+server:
+  port: 8099
+
+spring:
+    application:
+        name: "service-discovery"
+    cloud:
+        loadbalancer:
+            ribbon:
+                enabled: false
+
+
+
+eureka:
+    datacenter: "My-datacenter"
+    environment: prd
+    #instance:
+    #    hostname: localhost
+    server:
+        enable-self-preservation: false
+    client:
+        #registerWithEureka: false
+        #fetchRegistry: false
+        serviceUrl:
+            defaultZone: http://eureka-host1:8097/eureka/,http://eureka-host2:8098/eureka/,http://eureka-host3:8099/eureka/
+#

@@ -1,0 +1,11 @@
+server:
+  port: 8080 
+
+spring:
+    application:
+        name: microservice-number
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-host1:8097/eureka/,http://eureka-host2:8098/eureka/,http://eureka-host3:8099/eureka/

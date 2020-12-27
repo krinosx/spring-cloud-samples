@@ -1,0 +1,35 @@
+In order to work in a single machine its needed to register the hosts.
+(Windows 10)
+ hosts file - usually in C:\Windows\System32\drivers\etc
+ # add the entries ( adjust to your IP address )
+ 192.168.15.15   eureka-host1
+ 192.168.15.15   eureka-host2
+ 192.168.15.15   eureka-host3
+
+
+- Use to start Eureka Server Cluster.
+cd EurekaServer\service-discovery-server
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8097 --eureka.instance.hostname=eureka-host1"
+cd EurekaServer\service-discovery-server
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8098 --eureka.instance.hostname=eureka-host2"
+cd EurekaServer\service-discovery-server
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8099 --eureka.instance.hostname=eureka-host3"
+
+- To run Eureka 'microservices/clients'
+cd EurekaServer\service-discovery-server
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8001 --spring.application.name=microservice-1"
+cd EurekaServer\service-discovery-server
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8002 --spring.application.name=microservice-1"
+
+cd EurekaServer\service-discovery-test-client\test-client
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=7001 --spring.application.name=microservice-2"
+cd EurekaServer\service-discovery-test-client\test-client
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=7002 --spring.application.name=microservice-2"
+
+cd EurekaServer\service-discovery-test-client\test-client
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=5001 --spring.application.name=microservice-3"
+cd EurekaServer\service-discovery-test-client\test-client
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=5002 --spring.application.name=microservice-3"
+
+#consumer
+mvn spring-boot:run 
